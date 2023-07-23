@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiger Jobs</title>
+
+    
+
+    
+    
+
+
+    <link rel="icon" type="image/x-icon" href="./assets/image/logo.png" />
+
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJVNYXZ1BJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-PJVNYXZ1BJ');
+    </script>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./data/jobs.js"></script>
+    <script src="./data/internships.js"></script>
+</head>
+
+<body>
+    <div class="relative bg-gray-900">
+        <div class="absolute inset-x-0 bottom-0">
+            <svg viewBox="0 0 224 12" fill="currentColor" class="w-full -mb-1 text-white" preserveAspectRatio="none">
+                <path
+                    d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z">
+                </path>
+            </svg>
+        </div>
+        <!-- <div class="flex-col items-center text-center pt-5 text-gray-300">
+            <button onclick="changeContent('bookmark')">Bookmark</button>
+        </div> -->
+        <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6 lg:py-20">
+            <div class="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
+                <h2 class="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                    Tiger Jobs
+                </h2>
+                
+                
+                <button class="inline-flex items-center justify-center mb-4 md:mb-14 md:mr-4 w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-transparent hover:bg-purple-700 focus:shadow-outline focus:outline-none cursor-pointer
+                    border border-gray-400 hover:border-0" onclick="changeContent('jobs')" id="job-btn">
+                    Jobs
+                </button>
+                <button class="inline-flex items-center justify-center mb-4 md:mb-14 md:mr-4 w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-transparent hover:bg-purple-700 focus:shadow-outline focus:outline-none cursor-pointer
+                border border-gray-400 hover:border-0" onclick="changeContent('internships')" id="internship-btn">
+                    Internships
+                </button>
+                <a href="#listings" aria-label="Scroll down"
+                    class="flex items-center justify-center w-10 h-10 mx-auto text-white duration-300 transform border border-gray-400 rounded-full hover:text-teal-accent-400 hover:border-teal-accent-400 hover:shadow hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"
+                        fill="currentColor">
+                        <path
+                            d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main px-5 py-5 lg:py-16 lg:px-56" id="listings">
+        <form class="flex flex-col items-center w-full mb-4 md:flex-row md:px-16 md:mb-10" method="GET" id="search-form">
+            <input placeholder="Enter skill (one skill at a time)(eg. nodejs/python)" required type="text" id="skill" name="skill" autocomplete="off"
+                data-required="true"
+                class="flex-grow w-full h-12 px-4 mb-3 text-black transition duration-200 bg-transparent border-2 border-gray-400 rounded appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-200 focus:outline-none focus:shadow-outline" />
+            <button type="submit"
+                class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none">
+                Search
+            </button>
+            <button type="reset"
+                class="inline-flex items-center justify-center w-full h-12 px-6 mt-2 md:mt-0 md:ml-2 font-medium tracking-wide text-purple-400 transition duration-200 rounded shadow-md md:w-auto bg-transparent hover:bg-purple-700 hover:text-white border-2 border-purple-400 focus:shadow-outline focus:outline-none">
+                Reset
+            </button>
+        </form>
+        <h2 class="text-center text-4xl mb-10" id="listing-heading">Latest Jobs</h2>
+        <div class="loader hidden flex items-center justify-center mx-auto" id="loader"></div>
+        <div id="pagination" class="flex items-center justify-center mt-10">
+            <button id="prevPage" class="px-4 py-2 text-white bg-purple-400 rounded-l-md cursor-pointer disabled:opacity-50">Prev</button>
+            <span id="currentPage" class="px-4 py-2 font-bold">1</span>
+            <button id="nextPage" class="px-4 py-2 text-white bg-purple-400 rounded-r-md cursor-pointer disabled:opacity-50">Next</button>
+        </div>
+    </div>
+
+    <footer class="px-4 divide-y bg-gray-900 text-gray-100">
+        <div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+            <div class="lg:w-1/3">
+                <a rel="noopener noreferrer" href="#" class="flex justify-center space-x-3 lg:justify-start">
+                    
+                    <span class="self-center text-2xl font-semibold">Tiger Jobs</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-3">
+                
+                
+                
+            </div>
+        </div>
+        
+    </footer>
+
+    <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" onclick="backToTop()"
+        class="inline-block p-3 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-800 hover:shadow-lg focus:bg-green-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-500 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5"
+        id="btn-back-to-top">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor"
+                d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z">
+            </path>
+        </svg>
+    </button>
+
+    
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
